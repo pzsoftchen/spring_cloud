@@ -61,7 +61,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .and()
                 .withClient("webapp")
                 .scopes("xx")
-                .authorizedGrantTypes("implicit");
+                .authorizedGrantTypes("implicit")
+                .and()
+                .withClient("ind")   //产业金融
+                .scopes("sso")
+                .secret("ind")
+                .authorizedGrantTypes("password")
+                .and()
+                .withClient("log")  //物流金融
+                .scopes("sso")
+                .secret("log")
+                .authorizedGrantTypes("password");
     }
 
 }
