@@ -1,5 +1,6 @@
 package com.fengchaoli.acenter.controller;
 
+import com.fengchaoli.acenter.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,7 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public Principal userTest(Principal user) {
-        return user;
+    public void saveUser(User user) {
+
     }
 }
