@@ -3,23 +3,25 @@ buildscript {
 		springBootVersion = '1.5.8.RELEASE'
 	}
 	repositories {
-		mavenCentral()
+		maven { url "http://nexus.team.fengchaoli.com/repository/maven-public" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath('se.transmode.gradle:gradle-docker:1.2')
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'docker'
 
 group = 'com.fengchaoli'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+	maven { url "http://nexus.team.fengchaoli.com/repository/maven-public" }
 }
 
 
@@ -44,5 +46,25 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+
+task buildDocker(type: Docker, dependsOn: build) {
+	push = false
+	applicationName = 'fengchaoli/acenter'
+	dockerfile = file('src/main/docker/Dockerfile')
+
+	doFirst {
+		copy {
+			from jar
+			into stageDir
+		}
+//		copy{
+//			from('src/main/docker') {
+//				include '*.yml'
+//			}
+//			into stageDir
+//		}
 	}
 }
