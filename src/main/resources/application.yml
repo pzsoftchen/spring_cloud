@@ -5,9 +5,9 @@ spring:
       name: aucenter
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://119.29.21.93:3307/nothing2?useUnicode=true&amp;characterEncoding=UTF-8
-      username: root
-      password: G00dwi!!world
+      url: jdbc:mysql://120.76.215.203:3306/fengchao_acenter?useUnicode=true&amp;characterEncoding=UTF-8
+      username: fcl_dev_sa
+      password: 5vcB#RBaHCuWdTbDrKt4$pBvEHfcbhGb
       platform: mysql
   jpa:
       hibernate:
