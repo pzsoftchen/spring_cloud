@@ -14,7 +14,7 @@ spring:
         ddl-auto: update
 
 server:
-  port: 9000
+  port: 9999
 
 logging.level.org.springframework.security: DEBUG
 
