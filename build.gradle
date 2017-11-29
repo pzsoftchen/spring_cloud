@@ -52,7 +52,7 @@ dependencyManagement {
 
 task buildDocker(type: Docker, dependsOn: build) {
 	push = false
-	applicationName = 'registry-vpc.cn-shenzhen.aliyuncs.com/fengchaoli/acenter'
+	applicationName = 'acenter'
 	dockerfile = file('src/main/docker/Dockerfile')
 
 	doFirst {
