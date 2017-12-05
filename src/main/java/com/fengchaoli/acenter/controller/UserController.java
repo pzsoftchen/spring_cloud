@@ -1,9 +1,12 @@
 package com.fengchaoli.acenter.controller;
 
 import com.fengchaoli.acenter.form.UserForm;
+import com.fengchaoli.acenter.model.SecurityUser;
 import com.fengchaoli.acenter.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +22,8 @@ public class UserController {
     @Autowired
     protected ModelMapper modelMapper;
 
-    @GetMapping("/currentUser")
-    public Principal user(Principal user) {
-        return user;
+    @GetMapping("/api/currentUser")
+    public User user(OAuth2Authentication user) {
+        return ((SecurityUser)user.getPrincipal()).getUser();
     }
 }
