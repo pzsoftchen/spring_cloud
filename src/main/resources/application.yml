@@ -12,6 +12,9 @@ spring:
   jpa:
       hibernate:
         ddl-auto: update
+  data:
+      rest:
+        basePath: /api
 
 server:
   port: 9999

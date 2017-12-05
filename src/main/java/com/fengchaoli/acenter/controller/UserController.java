@@ -12,20 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.security.Principal;
 
+
 @RestController
 public class UserController {
 
     @Autowired
     protected ModelMapper modelMapper;
 
-    @GetMapping("/user")
+    @GetMapping("/currentUser")
     public Principal user(Principal user) {
         return user;
-    }
-
-    @PostMapping("/user")
-    public void saveUser(@Valid @ModelAttribute UserForm userForm) {
-       User user =  modelMapper.map(userForm,User.class);
-
     }
 }

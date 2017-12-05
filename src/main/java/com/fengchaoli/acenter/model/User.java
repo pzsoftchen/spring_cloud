@@ -18,6 +18,7 @@ public class User extends BaseModel{
     private String password;
 
     @Column
+    @Lob
     private String extra;
 
 }
