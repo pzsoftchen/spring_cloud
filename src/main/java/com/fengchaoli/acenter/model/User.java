@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,5 +21,8 @@ public class User extends BaseModel{
     @Column
     @Lob
     private String extra;
+
+    @OneToMany
+    private List<UserMeta> userMetas = new ArrayList<>();
 
 }
