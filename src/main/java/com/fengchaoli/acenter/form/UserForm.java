@@ -8,9 +8,6 @@ import java.io.Serializable;
 
 @Data
 public class UserForm extends BaseForm {
-
-    private String id;
-
     @NotNull
     private String account;
 
