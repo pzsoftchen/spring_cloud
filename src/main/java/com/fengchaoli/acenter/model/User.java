@@ -13,16 +13,13 @@ import java.util.List;
 @Data
 public class User extends BaseModel{
     @Column
-    private String email;
+    private String account;
 
     @Column
     private String password;
 
-    @Column
-    @Lob
-    private String extra;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<UserMeta> userMetas = new ArrayList<>();
 
 }

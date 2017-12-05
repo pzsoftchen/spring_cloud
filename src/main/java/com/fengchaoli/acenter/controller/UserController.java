@@ -30,7 +30,8 @@ public class UserController {
 
     @PostMapping("/api/currentUser")
     public User userInsert(UserForm userForm,OAuth2Authentication user) {
-        return ((SecurityUser)user.getPrincipal()).getUser();
+        String client = user.getOAuth2Request().getClientId();
+        return userService.userInsert(userForm,client);
     }
 
     @PutMapping("/api/currentUser/{id}")

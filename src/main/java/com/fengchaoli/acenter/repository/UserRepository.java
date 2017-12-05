@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @RepositoryRestResource
 public interface UserRepository extends JpaRepository<User, String>, JpaSpecificationExecutor<User> {
 
-    User findFirstByEmail(String email);
+    User findFirstByAccount(String account);
 }

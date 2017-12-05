@@ -13,6 +13,9 @@ public class UserMeta extends BaseModel{
     private User user;
 
     @Column
+    private String clientId;
+
+    @Column
     @Lob
     private String extra;
 
