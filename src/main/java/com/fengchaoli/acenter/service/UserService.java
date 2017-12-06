@@ -23,7 +23,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User userInsert(UserForm userForm,String clientId){
+    public User save(UserForm userForm,String clientId){
         User user = new User();
         user.setAccount(userForm.getAccount());
         user.setPassword(userForm.getPassword());
@@ -34,7 +34,7 @@ public class UserService {
         userMeta.setExtra(userForm.getExtra());
         user.getUserMetas().add(userMeta);
 
-        userRepository.save(user);
+        ///userRepository.save(user);
         applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));
 
         return user;

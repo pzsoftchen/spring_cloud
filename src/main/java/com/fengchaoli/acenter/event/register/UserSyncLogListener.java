@@ -1,17 +1,17 @@
 package com.fengchaoli.acenter.event.register;
 
 import com.fengchaoli.acenter.model.User;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.stereotype.Component;
 
 @Slf4j
+@Data
 @Component
 public class UserSyncLogListener implements SmartApplicationListener
 {
-
-
     /**
      *  该方法返回true&supportsSourceType同样返回true时，才会调用该监听内的onApplicationEvent方法
      * @param aClass 接收到的监听事件类型
@@ -45,16 +45,11 @@ public class UserSyncLogListener implements SmartApplicationListener
         //获取注册用户对象信息
         User user = (User) userSyncEvent.getSource();
         String clientId = userSyncEvent.getClientId();
-        System.out.println("用户："+user.getAccount()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+this.getNofityUrl());
+        System.out.println("用户："+user.getAccount()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:");
     }
 
     @Override
     public int getOrder() {
         return 1;
-    }
-
-
-    public String getNofityUrl() {
-        return "log.html";
     }
 }
