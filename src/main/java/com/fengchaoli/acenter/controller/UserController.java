@@ -29,9 +29,15 @@ public class UserController {
         return ((SecurityUser)user.getPrincipal()).getUser();
     }
 
-    @PostMapping("/api/currentUser/{id}")
-    public User save(@PathVariable("id")String id, UserForm userForm,OAuth2Authentication user) {
+    @PostMapping("/api/currentUser")
+    public User insert(UserForm userForm,OAuth2Authentication user) {
         String client = user.getOAuth2Request().getClientId();
-        return userService.save(userForm,client);
+        return userService.save(null,userForm,client);
+    }
+
+    @PutMapping("/api/currentUser/{id}")
+    public User udpate(@PathVariable("id")String id, UserForm userForm,OAuth2Authentication user) {
+        String client = user.getOAuth2Request().getClientId();
+        return userService.save(id,userForm,client);
     }
 }
