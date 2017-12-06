@@ -1,7 +1,9 @@
 package com.fengchaoli.acenter.config;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.SimpleApplicationEventMulticaster;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -10,10 +12,10 @@ import java.util.concurrent.Executor;
 
 @Configuration
 @EnableAsync
-public class ListenerAsyncConfiguration implements AsyncConfigurer
-{
+public class ListenerAsyncConfiguration implements AsyncConfigurer {
     /**
      * 获取异步线程池执行对象
+     *
      * @return
      */
     @Override
@@ -26,6 +28,17 @@ public class ListenerAsyncConfiguration implements AsyncConfigurer
         taskExecutor.setQueueCapacity(25);
         taskExecutor.initialize();
         return taskExecutor;
+    }
+
+    /**
+     * 广播事件
+     * @return
+     */
+    @Bean
+    public SimpleApplicationEventMulticaster applicationEventMulticaster() {
+        SimpleApplicationEventMulticaster multicaster = new SimpleApplicationEventMulticaster();
+        multicaster.setTaskExecutor(getAsyncExecutor());
+        return multicaster;
     }
 
     @Override

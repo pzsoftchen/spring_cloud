@@ -11,7 +11,7 @@ public class SecurityUser extends org.springframework.security.core.userdetails.
     private User user;
 
     public SecurityUser(User user, Boolean enabled,Boolean accountNonExpired, Boolean credentialsNonExpired ,Boolean accountNonLocked,Collection<GrantedAuthority> authorities){
-        super(user.getEmail(),user.getPassword(),enabled,accountNonExpired,credentialsNonExpired ,accountNonLocked,authorities);
+        super(user.getAccount(),user.getPassword(),enabled,accountNonExpired,credentialsNonExpired ,accountNonLocked,authorities);
         this.user = user;
     }
 }
