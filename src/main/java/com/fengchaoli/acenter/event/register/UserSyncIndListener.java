@@ -3,6 +3,7 @@ package com.fengchaoli.acenter.event.register;
 import com.fengchaoli.acenter.model.User;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserSyncIndListener implements SmartApplicationListener
 {
+    @Value("${notify.url.ind}")
+    private String url;
+
     /**
      *  该方法返回true&supportsSourceType同样返回true时，才会调用该监听内的onApplicationEvent方法
      * @param aClass 接收到的监听事件类型
@@ -45,7 +49,7 @@ public class UserSyncIndListener implements SmartApplicationListener
         //获取注册用户对象信息
         User user = (User) userSyncEvent.getSource();
         String clientId = userSyncEvent.getClientId();
-        System.out.println("用户："+user.getAccount()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:");
+        System.out.println("用户："+user.getAccount()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+url);
     }
 
     @Override
