@@ -59,19 +59,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret("android")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
                 .and()
-                .withClient("webapp")
-                .scopes("xx")
-                .authorizedGrantTypes("implicit")
-                .and()
                 .withClient("ind")   //产业金融
                 .scopes("sso")
                 .secret("ind")
-                .authorizedGrantTypes("password")
+                .authorizedGrantTypes("password","client_credentials")
                 .and()
                 .withClient("log")  //物流金融
                 .scopes("sso")
                 .secret("log")
-                .authorizedGrantTypes("password");
+                .authorizedGrantTypes("password","client_credentials");
     }
 
 }
