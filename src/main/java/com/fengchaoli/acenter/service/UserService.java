@@ -1,15 +1,13 @@
 package com.fengchaoli.acenter.service;
 
-import com.fengchaoli.acenter.event.register.UserSyncEvent;
+import com.fengchaoli.acenter.event.sync.user.UserSyncEvent;
 import com.fengchaoli.acenter.form.UserForm;
 import com.fengchaoli.acenter.model.User;
 import com.fengchaoli.acenter.model.UserMeta;
 import com.fengchaoli.acenter.repository.UserRepository;
 import com.xiaoleilu.hutool.util.ObjectUtil;
-import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ApplicationEventMulticaster;
-import org.springframework.context.event.SimpleApplicationEventMulticaster;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

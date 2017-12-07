@@ -11,10 +11,7 @@ import java.util.List;
 @Data
 public class Enterprise extends BaseModel{
     @Column
-    private String account;
-
-    @Column
-    private String password;
+    private String name;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "enterpriseId", referencedColumnName = "id")

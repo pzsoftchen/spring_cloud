@@ -1,4 +1,4 @@
-package com.fengchaoli.acenter.event.register;
+package com.fengchaoli.acenter.event.sync.user;
 
 import com.fengchaoli.acenter.model.User;
 import lombok.Data;

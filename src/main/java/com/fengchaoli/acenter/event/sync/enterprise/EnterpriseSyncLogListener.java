@@ -1,7 +1,6 @@
-package com.fengchaoli.acenter.event.register;
+package com.fengchaoli.acenter.event.sync.enterprise;
 
-import com.fengchaoli.acenter.model.User;
-import com.xiaoleilu.hutool.http.HttpUtil;
+import com.fengchaoli.acenter.model.Enterprise;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,15 +8,12 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Slf4j
 @Data
 @Component
-public class UserSyncLogListener implements SmartApplicationListener
+public class EnterpriseSyncLogListener implements SmartApplicationListener
 {
-    @Value("${notify.url.log}")
+    @Value("${notify.url.ind}")
     private String url;
 
     /**
@@ -28,7 +24,7 @@ public class UserSyncLogListener implements SmartApplicationListener
     @Override
     public boolean supportsEventType(Class<? extends ApplicationEvent> aClass) {
         //只有UserRegisterEvent监听类型才会执行下面逻辑
-        return aClass == UserSyncEvent.class;
+        return aClass == EnterpriseSyncEvent.class;
     }
 
     /**
@@ -39,7 +35,7 @@ public class UserSyncLogListener implements SmartApplicationListener
     @Override
     public boolean supportsSourceType(Class<?> aClass) {
         //只有在UserService内发布的UserRegisterEvent事件时才会执行下面逻辑
-        return aClass == User.class;
+        return aClass == Enterprise.class;
     }
 
     /**
@@ -49,15 +45,11 @@ public class UserSyncLogListener implements SmartApplicationListener
     @Override
     public void onApplicationEvent(ApplicationEvent applicationEvent) {
         //转换事件类型
-        UserSyncEvent userSyncEvent = (UserSyncEvent) applicationEvent;
+        EnterpriseSyncEvent enterpriseSyncEvent = (EnterpriseSyncEvent) applicationEvent;
         //获取注册用户对象信息
-        User user = (User) userSyncEvent.getSource();
-        String clientId = userSyncEvent.getClientId();
-        System.out.println("用户："+user.getAccount()+"，注册成功，发送notify通知。clientId1:"+clientId+"。url:"+url);
-        //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("user", "11");
-        String result3= HttpUtil.get(url, paramMap);
+        Enterprise enterprise = (Enterprise) enterpriseSyncEvent.getSource();
+        String clientId = enterpriseSyncEvent.getClientId();
+        System.out.println("企业："+enterprise.getName()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+url);
     }
 
     @Override
