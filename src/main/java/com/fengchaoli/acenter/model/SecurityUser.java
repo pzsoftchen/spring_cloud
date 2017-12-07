@@ -8,10 +8,10 @@ import java.util.Collection;
 @Data
 public class SecurityUser extends org.springframework.security.core.userdetails.User {
 
-    private User user;
+    private String userId;
 
     public SecurityUser(User user, Boolean enabled,Boolean accountNonExpired, Boolean credentialsNonExpired ,Boolean accountNonLocked,Collection<GrantedAuthority> authorities){
         super(user.getAccount(),user.getPassword(),enabled,accountNonExpired,credentialsNonExpired ,accountNonLocked,authorities);
-        this.user = user;
+        this.userId = user.getId();
     }
 }

@@ -5,13 +5,14 @@ import com.fengchaoli.acenter.form.UserForm;
 import com.fengchaoli.acenter.model.User;
 import com.fengchaoli.acenter.model.UserMeta;
 import com.fengchaoli.acenter.repository.UserRepository;
+import com.xiaoleilu.hutool.util.ObjectUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.context.event.SimpleApplicationEventMulticaster;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 
 @Transactional
 @Service
@@ -23,21 +24,40 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User save(String id,UserForm userForm,String clientId){
+    public User getOne(String id){
+        return userRepository.getOne(id);
+    }
 
+    public User insert(String id,UserForm userForm,String clientId){
         User user = new User();
         user.setAccount(userForm.getAccount());
         user.setPassword(userForm.getPassword());
 
         UserMeta userMeta = new UserMeta();
         userMeta.setClientId(clientId);
-        userMeta.setUser(user);
         userMeta.setExtra(userForm.getExtra());
         user.getUserMetas().add(userMeta);
 
-        ///userRepository.save(user);
+        userRepository.save(user);
         applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));
+        return user;
+    }
 
+    public User update(String id,UserForm userForm,String clientId){
+        User user = userRepository.getOne(id);
+        UserMeta userMeta = user.getUserMetas().stream().filter(meta ->
+                ObjectUtil.equal(clientId,meta.getClientId())).findFirst().get();
+        if(userMeta==null){
+            userMeta = new UserMeta();
+            userMeta.setClientId(clientId);
+            userMeta.setExtra(userForm.getExtra());
+            user.getUserMetas().add(userMeta);
+        }else{
+            userMeta.setExtra(userForm.getExtra());
+        }
+
+        userRepository.save(user);
+        applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));
         return user;
     }
 }

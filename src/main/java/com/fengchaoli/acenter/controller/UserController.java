@@ -1,5 +1,6 @@
 package com.fengchaoli.acenter.controller;
 
+import com.fengchaoli.acenter.dto.UserDto;
 import com.fengchaoli.acenter.form.UserForm;
 import com.fengchaoli.acenter.model.SecurityUser;
 import com.fengchaoli.acenter.model.User;
@@ -26,18 +27,22 @@ public class UserController {
 
     @GetMapping("/api/currentUser")
     public User user(OAuth2Authentication user) {
-        return ((SecurityUser)user.getPrincipal()).getUser();
+        String userId = ((SecurityUser)user.getPrincipal()).getUserId();
+        return userService.getOne(userId);
     }
 
-    @PostMapping("/api/currentUser")
-    public User insert(UserForm userForm,OAuth2Authentication user) {
-        String client = user.getOAuth2Request().getClientId();
-        return userService.save(null,userForm,client);
+    @PostMapping("/api/users/sync")
+    public UserDto insert(UserForm userForm,OAuth2Authentication currentUser) {
+        String client = currentUser.getOAuth2Request().getClientId();
+        User user = userService.insert(null,userForm,client);
+        return modelMapper.map(user, UserDto.class);
     }
 
-    @PutMapping("/api/currentUser/{id}")
-    public User udpate(@PathVariable("id")String id, UserForm userForm,OAuth2Authentication user) {
-        String client = user.getOAuth2Request().getClientId();
-        return userService.save(id,userForm,client);
+
+    @PutMapping("/api/users/sync/{id}")
+    public UserDto udpate(@PathVariable("id")String id, UserForm userForm,OAuth2Authentication currentUser) {
+        String client = currentUser.getOAuth2Request().getClientId();
+        User user = userService.update(id,userForm,client);
+        return modelMapper.map(user, UserDto.class);
     }
 }
