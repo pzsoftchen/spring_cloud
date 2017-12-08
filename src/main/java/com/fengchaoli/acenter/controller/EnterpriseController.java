@@ -32,7 +32,7 @@ public class EnterpriseController {
     }
 
 
-    @PutMapping("/api/users/sync/{id}")
+    @PutMapping("/api/enterprises/sync/{id}")
     public EnterpriseDto udpate(@PathVariable("id")String id, EnterpriseForm enterpriseForm,OAuth2Authentication currentUser) {
         String client = currentUser.getOAuth2Request().getClientId();
         Enterprise enterprise = enterpriseService.update(id,enterpriseForm,client);
