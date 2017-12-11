@@ -26,10 +26,11 @@ public class UserService {
         return userRepository.getOne(id);
     }
 
-    public User insert(String id,UserForm userForm,String clientId){
+    public User insert(UserForm userForm,String clientId){
         User user = new User();
         user.setAccount(userForm.getAccount());
         user.setPassword(userForm.getPassword());
+        user.setEnterpriseId(userForm.getEnterpriseId());
 
         UserMeta userMeta = new UserMeta();
         userMeta.setClientId(clientId);

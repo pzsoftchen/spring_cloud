@@ -18,6 +18,9 @@ public class User extends BaseModel{
     @Column
     private String password;
 
+    @Column
+    private String enterpriseId;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", referencedColumnName = "id")
     private List<UserMeta> userMetas = new ArrayList<>();

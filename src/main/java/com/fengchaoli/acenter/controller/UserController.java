@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     protected UserService userService;
 
-    @GetMapping("/api/currentUser")
+    @GetMapping("/api/users/current")
     public User user(OAuth2Authentication user) {
         String userId = ((SecurityUser)user.getPrincipal()).getUserId();
         return userService.getOne(userId);
@@ -34,10 +34,9 @@ public class UserController {
     @PostMapping("/api/users/sync")
     public UserDto insert(UserForm userForm,OAuth2Authentication currentUser) {
         String client = currentUser.getOAuth2Request().getClientId();
-        User user = userService.insert(null,userForm,client);
+        User user = userService.insert(userForm,client);
         return modelMapper.map(user, UserDto.class);
     }
-
 
     @PutMapping("/api/users/sync/{id}")
     public UserDto udpate(@PathVariable("id")String id, UserForm userForm,OAuth2Authentication currentUser) {

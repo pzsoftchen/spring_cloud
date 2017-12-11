@@ -14,6 +14,8 @@ public class UserForm extends BaseForm {
     @NotNull
     private String password;
 
+    private String enterpriseId;
+
     @NotNull
     private String extra;
 }

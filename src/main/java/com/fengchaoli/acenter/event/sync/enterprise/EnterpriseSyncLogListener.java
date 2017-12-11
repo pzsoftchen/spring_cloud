@@ -1,12 +1,17 @@
 package com.fengchaoli.acenter.event.sync.enterprise;
 
 import com.fengchaoli.acenter.model.Enterprise;
+import com.xiaoleilu.hutool.http.HttpUtil;
+import com.xiaoleilu.hutool.json.JSONUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Data
@@ -49,7 +54,13 @@ public class EnterpriseSyncLogListener implements SmartApplicationListener
         //获取注册用户对象信息
         Enterprise enterprise = (Enterprise) enterpriseSyncEvent.getSource();
         String clientId = enterpriseSyncEvent.getClientId();
-        System.out.println("企业："+enterprise.getName()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+url);
+        log.debug("企业："+enterprise.getName()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+url);
+        //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("data",  JSONUtil.toJsonStr(enterprise));
+        paramMap.put("clientId",clientId);
+        paramMap.put("event","EnterpriseSyncEvent");
+        HttpUtil.post(url, paramMap);
     }
 
     @Override
