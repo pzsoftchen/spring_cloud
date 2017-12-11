@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsService)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance());  //直接密文进来，不进行任何加密进行比对
+                .passwordEncoder(new BCryptPasswordEncoder(11));  //直接密文进来，不进行任何加密进行比对
     }
 
     //不定义没有password grant_type
