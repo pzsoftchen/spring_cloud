@@ -26,9 +26,10 @@ public class UserController {
     protected UserService userService;
 
     @GetMapping("/api/users/current")
-    public User user(OAuth2Authentication user) {
-        String userId = ((SecurityUser)user.getPrincipal()).getUserId();
-        return userService.getOne(userId);
+    public UserDto user(OAuth2Authentication currentUser) {
+        String userId = ((SecurityUser)currentUser.getPrincipal()).getUserId();
+        User user = userService.getOne(userId);
+        return modelMapper.map(user, UserDto.class);
     }
 
     @PostMapping("/api/users/sync")

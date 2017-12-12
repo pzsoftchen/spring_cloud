@@ -1,14 +1,25 @@
 package com.fengchaoli.acenter.event.sync.user;
 
+import com.alibaba.fastjson.JSON;
+import com.fengchaoli.acenter.dto.EnterpriseDto;
+import com.fengchaoli.acenter.dto.UserDto;
+import com.fengchaoli.acenter.model.Enterprise;
 import com.fengchaoli.acenter.model.User;
+import com.fengchaoli.acenter.service.EnterpriseService;
 import com.xiaoleilu.hutool.http.HttpUtil;
+import com.xiaoleilu.hutool.json.JSONObject;
 import com.xiaoleilu.hutool.json.JSONUtil;
+import com.xiaoleilu.hutool.util.StrUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +31,14 @@ public class UserSyncIndListener implements SmartApplicationListener
 {
     @Value("${notify.url.ind}")
     private String url;
+
+    @Autowired
+    private EnterpriseService enterpriseService;
+
+
+    @Autowired
+    protected ModelMapper modelMapper;
+
 
     /**
      *  该方法返回true&supportsSourceType同样返回true时，才会调用该监听内的onApplicationEvent方法
@@ -40,7 +59,7 @@ public class UserSyncIndListener implements SmartApplicationListener
     @Override
     public boolean supportsSourceType(Class<?> aClass) {
         //只有在UserService内发布的UserRegisterEvent事件时才会执行下面逻辑
-        return aClass == User.class;
+        return true;
     }
 
     /**
@@ -54,10 +73,17 @@ public class UserSyncIndListener implements SmartApplicationListener
         //获取注册用户对象信息
         User user = (User) userSyncEvent.getSource();
         String clientId = userSyncEvent.getClientId();
+
+        UserDto userDto = modelMapper.map(user,UserDto.class);
+        if(StrUtil.isNotBlank(user.getEnterpriseId())){
+            Enterprise enterprise = enterpriseService.getOne(user.getEnterpriseId());
+            userDto.setEnterpriseDto(modelMapper.map(enterprise, EnterpriseDto.class));
+        }
+
         log.debug("用户："+user.getAccount()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+url);
         //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("data",  JSONUtil.toJsonStr(user));
+        paramMap.put("data",  JSON.toJSONString(userDto));
         paramMap.put("clientId",clientId);
         paramMap.put("event","UserSyncEvent");
         HttpUtil.post(url, paramMap);

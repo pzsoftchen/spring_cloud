@@ -13,7 +13,7 @@ public class Enterprise extends BaseModel{
     @Column
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "enterpriseId", referencedColumnName = "id")
     private List<EnterpriseMeta> enterpriseMetas = new ArrayList<>();
 

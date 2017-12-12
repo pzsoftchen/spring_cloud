@@ -39,6 +39,7 @@ dependencies {
 	compile('com.xiaoleilu:hutool-all:3.2.0')
 	compile('org.modelmapper:modelmapper:1.1.0')
 	compile("org.projectlombok:lombok:$lombokVersion")
+	compile('com.alibaba:fastjson:1.2.32')
 	runtime('mysql:mysql-connector-java')
 	testCompile("org.projectlombok:lombok:$lombokVersion")
 	testCompile('org.springframework.boot:spring-boot-starter-test')

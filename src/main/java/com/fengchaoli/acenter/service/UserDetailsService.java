@@ -29,7 +29,6 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String account) {
         User user = userRepository.findFirstByAccount(account);
-
         return new SecurityUser(user,
                 true, true, true, true,
                 getAuthorities(roleRepository.findAll()));

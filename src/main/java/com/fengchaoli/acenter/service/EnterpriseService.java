@@ -23,7 +23,7 @@ public class EnterpriseService {
     private EnterpriseRepository enterpriseRepository;
 
     public Enterprise getOne(String id){
-        return enterpriseRepository.getOne(id);
+        return enterpriseRepository.findOne(id);
     }
 
     public Enterprise insert(String id, EnterpriseForm enterpriseForm, String clientId){

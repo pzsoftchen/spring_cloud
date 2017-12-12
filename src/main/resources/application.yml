@@ -16,9 +16,6 @@ spring:
       rest:
         basePath: /api
 
-server:
-  port: 9999
-
 logging.level.org.springframework.security: DEBUG
 
 logging.leve.org.springframework: DEBUG
@@ -31,6 +28,6 @@ security:
 
 notify:
   url:
-    ind: http://192.168.10.96:8080/api/anon/auth/account/notify
-    log: http://localhost:8080/fclAcenterController.do?notify
+    ind: http://192.168.10.92:8080/api/anon/auth/account/notify
+    log: http://192.168.10.108:8080/fcl/fclAcenterController.do?notify
 

@@ -21,7 +21,7 @@ public class User extends BaseModel{
     @Column
     private String enterpriseId;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "userId", referencedColumnName = "id")
     private List<UserMeta> userMetas = new ArrayList<>();
 }

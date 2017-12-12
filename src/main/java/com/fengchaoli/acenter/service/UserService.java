@@ -1,11 +1,13 @@
 package com.fengchaoli.acenter.service;
 
+import com.fengchaoli.acenter.dto.UserDto;
 import com.fengchaoli.acenter.event.sync.user.UserSyncEvent;
 import com.fengchaoli.acenter.form.UserForm;
 import com.fengchaoli.acenter.model.User;
 import com.fengchaoli.acenter.model.UserMeta;
 import com.fengchaoli.acenter.repository.UserRepository;
 import com.xiaoleilu.hutool.util.ObjectUtil;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.stereotype.Service;
@@ -22,8 +24,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    protected ModelMapper modelMapper;
+
     public User getOne(String id){
-        return userRepository.getOne(id);
+        return userRepository.findOne(id);
     }
 
     public User insert(UserForm userForm,String clientId){
@@ -44,6 +49,9 @@ public class UserService {
 
     public User update(String id,UserForm userForm,String clientId){
         User user = userRepository.getOne(id);
+        user.setAccount(userForm.getAccount());
+        user.setPassword(userForm.getPassword());
+        user.setEnterpriseId(userForm.getEnterpriseId());
         UserMeta userMeta = user.getUserMetas().stream().filter(meta ->
                 ObjectUtil.equal(clientId,meta.getClientId())).findFirst().get();
         if(userMeta==null){

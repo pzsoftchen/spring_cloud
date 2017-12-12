@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: prod
+
+
+server:
+  port: 8080
+
+
+notify:
+  url:
+    ind: http://192.168.10.92:8080/api/anon/auth/account/notify
+    log: http://192.168.10.108:8080/fcl/fclAcenterController.do?notify
