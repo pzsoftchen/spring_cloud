@@ -16,10 +16,12 @@ spring:
       rest:
         basePath: /api
 
-logging.level.org.springframework.security: DEBUG
+#logging.level.org.springframework.security: DEBUG
 
-logging.leve.org.springframework: DEBUG
+#logging.leve.org.springframework: DEBUG
 
+server:
+  port: 9999
 
 security:
   oauth2:

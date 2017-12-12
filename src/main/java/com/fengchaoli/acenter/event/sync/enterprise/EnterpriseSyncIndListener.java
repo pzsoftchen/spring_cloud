@@ -67,7 +67,7 @@ public class EnterpriseSyncIndListener implements SmartApplicationListener
         Enterprise enterprise = (Enterprise) enterpriseSyncEvent.getSource();
         EnterpriseDto enterpriseDto = modelMapper.map(enterprise,EnterpriseDto.class);
         String clientId = enterpriseSyncEvent.getClientId();
-        log.debug("企业："+enterprise.getName()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+url);
+        log.info("企业："+enterprise.getName()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+url);
         //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("data", JSON.toJSONString(enterpriseDto));

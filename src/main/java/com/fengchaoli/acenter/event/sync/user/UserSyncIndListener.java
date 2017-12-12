@@ -80,7 +80,7 @@ public class UserSyncIndListener implements SmartApplicationListener
             userDto.setEnterpriseDto(modelMapper.map(enterprise, EnterpriseDto.class));
         }
 
-        log.debug("用户："+user.getAccount()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+url);
+        log.info("用户："+user.getAccount()+"，注册成功，发送notify通知。clientId:"+clientId+"。url:"+url);
         //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("data",  JSON.toJSONString(userDto));
