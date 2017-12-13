@@ -37,7 +37,10 @@ public class UserService {
     }
 
     public User insert(UserForm userForm,String clientId){
-        User user = new User();
+        //查询用户是否存在
+        User user = userRepository.findFirstByAccount(userForm.getAccount());
+        if(user==null)
+            user = new User();
         user.setAccount(userForm.getAccount());
         user.setPassword(userForm.getPassword());
         user.setEnterpriseId(userForm.getEnterpriseId());
