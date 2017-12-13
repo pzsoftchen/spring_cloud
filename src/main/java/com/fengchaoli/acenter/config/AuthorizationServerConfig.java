@@ -54,9 +54,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("android")
-                .scopes("xx")
-                .secret("android")
+                .withClient("acenter")
+                .scopes("main")
+                .secret("acenter")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token","client_credentials")
                 .and()
                 .withClient("ind")   //产业金融

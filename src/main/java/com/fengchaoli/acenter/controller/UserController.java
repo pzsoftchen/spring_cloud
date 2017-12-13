@@ -1,6 +1,7 @@
 package com.fengchaoli.acenter.controller;
 
 import com.fengchaoli.acenter.dto.UserDto;
+import com.fengchaoli.acenter.form.NotifyForm;
 import com.fengchaoli.acenter.form.UserForm;
 import com.fengchaoli.acenter.model.SecurityUser;
 import com.fengchaoli.acenter.model.User;
@@ -43,6 +44,19 @@ public class UserController {
     public UserDto udpate(@PathVariable("id")String id, UserForm userForm,OAuth2Authentication currentUser) {
         String client = currentUser.getOAuth2Request().getClientId();
         User user = userService.update(id,userForm,client);
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    /**
+     * 账号、企业信息下发
+     * @param notifyForm
+     * @param currentUser
+     * @return
+     */
+    @PutMapping("/api/users/notify")
+    public UserDto notify(NotifyForm notifyForm, OAuth2Authentication currentUser) {
+        String client = currentUser.getOAuth2Request().getClientId();
+        User user = userService.notify(notifyForm,client);
         return modelMapper.map(user, UserDto.class);
     }
 }
