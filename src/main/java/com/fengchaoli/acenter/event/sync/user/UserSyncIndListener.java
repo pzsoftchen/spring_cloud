@@ -35,7 +35,6 @@ public class UserSyncIndListener implements SmartApplicationListener
     @Autowired
     private EnterpriseService enterpriseService;
 
-
     @Autowired
     protected ModelMapper modelMapper;
 

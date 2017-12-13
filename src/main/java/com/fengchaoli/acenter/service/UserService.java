@@ -24,9 +24,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    protected ModelMapper modelMapper;
-
     public User getOne(String id){
         return userRepository.findOne(id);
     }
