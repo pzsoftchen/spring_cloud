@@ -32,11 +32,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new SecurityEvaluationContextExtension();
     }
 
-    @Bean
-    @Order(100)
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
