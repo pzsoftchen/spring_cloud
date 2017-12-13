@@ -53,7 +53,7 @@ public class UserController {
      * @param currentUser
      * @return
      */
-    @PutMapping("/api/users/notify")
+    @PostMapping("/api/users/notify")
     public UserDto notify(NotifyForm notifyForm, OAuth2Authentication currentUser) {
         String client = currentUser.getOAuth2Request().getClientId();
         User user = userService.notify(notifyForm,client);
