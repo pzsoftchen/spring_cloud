@@ -13,6 +13,6 @@ public class EnterpriseDto {
 
     private String name;
 
-    private List<EnterpriseMeta> enterpriseMetas = new ArrayList<>();
+    private List<EnterpriseMetaDto> enterpriseMetas = new ArrayList<>();
 
 }

@@ -7,9 +7,6 @@ import javax.persistence.Lob;
 
 @Data
 public class UserMetaDto {
-
-    private String userId;
-
     private String clientId;
 
     private String extra;

@@ -39,14 +39,14 @@ public class UserService {
     @Autowired
     private NotifyDataRepository notifyDataRepository;
 
-    public User getOne(String id){
+    public User getOne(String id) {
         return userRepository.findOne(id);
     }
 
-    public User insert(UserForm userForm,String clientId){
+    public User insert(UserForm userForm, String clientId) {
         //查询用户是否存在
         User user = userRepository.findFirstByAccount(userForm.getAccount());
-        if(user==null)
+        if (user == null)
             user = new User();
         user.setAccount(userForm.getAccount());
         user.setPassword(userForm.getPassword());
@@ -58,40 +58,40 @@ public class UserService {
         user.getUserMetas().add(userMeta);
 
         userRepository.save(user);
-        applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));
+        applicationEventMulticaster.multicastEvent(new UserSyncEvent(user, clientId));
         return user;
     }
 
-    public User update(String id,UserForm userForm,String clientId){
+    public User update(String id, UserForm userForm, String clientId) {
         User user = userRepository.getOne(id);
         user.setAccount(userForm.getAccount());
         user.setPassword(userForm.getPassword());
         user.setEnterpriseId(userForm.getEnterpriseId());
         UserMeta userMeta = user.getUserMetas().stream().filter(meta ->
-                ObjectUtil.equal(clientId,meta.getClientId())).findFirst().get();
-        if(userMeta==null){
+                ObjectUtil.equal(clientId, meta.getClientId())).findFirst().get();
+        if (userMeta == null) {
             userMeta = new UserMeta();
             userMeta.setClientId(clientId);
             userMeta.setExtra(userForm.getExtra());
             user.getUserMetas().add(userMeta);
-        }else{
+        } else {
             userMeta.setExtra(userForm.getExtra());
         }
 
         userRepository.save(user);
-        applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));
+        applicationEventMulticaster.multicastEvent(new UserSyncEvent(user, clientId));
         return user;
     }
 
-    public User notify(NotifyForm notifyForm, String clientId){
+    public User notify(NotifyForm notifyForm, String clientId) {
         Enterprise enterprise = enterpriseRepository.findOne(notifyForm.getEnterpriseId());
-        if(enterprise==null){
+        if (enterprise == null) {
             enterprise = new Enterprise();
             enterprise.setId(notifyForm.getEnterpriseId());
             enterprise.setName(notifyForm.getEnterpriseName());
             enterpriseRepository.save(enterprise);
             //发送企业信息
-            applicationEventMulticaster.multicastEvent(new EnterpriseSyncEvent(enterprise,clientId));
+            applicationEventMulticaster.multicastEvent(new EnterpriseSyncEvent(enterprise, clientId));
         }
 
         User user = new User();
@@ -100,27 +100,27 @@ public class UserService {
         user.setPassword(notifyForm.getPassword());
         userRepository.save(user);
         //发送用户信息
-        applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));
+        applicationEventMulticaster.multicastEvent(new UserSyncEvent(user, clientId));
 
         return user;
     }
 
-    public void notifyByDb(String clientId){
+    public void notifyByDb(String clientId) {
         List<NotifyData> list = notifyDataRepository.findAll();
 
-        for(NotifyData notifyData:list){
+        for (NotifyData notifyData : list) {
             Enterprise enterprise = enterpriseRepository.findOne(notifyData.getEnterpriseId());
-            if(enterprise==null){
+            if (enterprise == null) {
                 enterprise = new Enterprise();
-                enterprise.setId(notifyData.getEnterpriseId());
-                enterprise.setName(notifyData.getEnterpriseName());
-                enterpriseRepository.save(enterprise);
-                //发送企业信息
-                applicationEventMulticaster.multicastEvent(new EnterpriseSyncEvent(enterprise,clientId));
             }
+            enterprise.setId(notifyData.getEnterpriseId());
+            enterprise.setName(notifyData.getEnterpriseName());
+            enterpriseRepository.save(enterprise);
+            //发送企业信息
+            applicationEventMulticaster.multicastEvent(new EnterpriseSyncEvent(enterprise, clientId));
 
             User user = userRepository.findOne(notifyData.getUserId());
-            if(user==null)
+            if (user == null)
                 user = new User();
             user.setId(notifyData.getUserId());
             user.setAccount(notifyData.getAccount());
@@ -128,7 +128,7 @@ public class UserService {
             user.setEnterpriseId(notifyData.getEnterpriseId());
             userRepository.save(user);
             //发送用户信息
-            applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));
+            applicationEventMulticaster.multicastEvent(new UserSyncEvent(user, clientId));
         }
     }
 }
