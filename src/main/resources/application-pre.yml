@@ -3,7 +3,7 @@ spring:
     active: prod
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://112.74.41.81:3306/fengchao_acenter?useUnicode=true&amp;characterEncoding=UTF-8
+    url: jdbc:mysql://112.74.41.81:3306/fcl_acenter?useUnicode=true&amp;characterEncoding=UTF-8
     username: fcl_acenter_rw
     password: 9tXJa^PR%I8eb%5n
     platform: mysql
