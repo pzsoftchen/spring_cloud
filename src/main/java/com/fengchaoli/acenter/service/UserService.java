@@ -119,10 +119,13 @@ public class UserService {
                 applicationEventMulticaster.multicastEvent(new EnterpriseSyncEvent(enterprise,clientId));
             }
 
-            User user = new User();
+            User user = userRepository.findOne(notifyData.getUserId());
+            if(user==null)
+                user = new User();
             user.setId(notifyData.getUserId());
             user.setAccount(notifyData.getAccount());
             user.setPassword(notifyData.getPassword());
+            user.setEnterpriseId(notifyData.getEnterpriseId());
             userRepository.save(user);
             //发送用户信息
             applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));

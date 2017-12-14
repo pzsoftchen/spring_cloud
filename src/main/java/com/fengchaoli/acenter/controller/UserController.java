@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/api/users/sync")
-    public UserDto insert(UserForm userForm,OAuth2Authentication currentUser) {
+    public UserDto insert(@Valid UserForm userForm,OAuth2Authentication currentUser) {
         String client = currentUser.getOAuth2Request().getClientId();
         User user = userService.insert(userForm,client);
         return modelMapper.map(user, UserDto.class);

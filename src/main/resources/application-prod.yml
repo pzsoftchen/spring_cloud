@@ -1,6 +1,12 @@
 spring:
   profiles:
     active: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-wz9m91ku1l91q0u3j.mysql.rds.aliyuncs.com:3306/fcl_acenter?useUnicode=true&amp;characterEncoding=UTF-8
+    username: fcl_acenter_rw
+    password: EvybEB#uO%nug549OK*#Tm3oOe7cYWes
+    platform: mysql
 
 
 server:
