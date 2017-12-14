@@ -15,5 +15,5 @@ server:
 
 notify:
   url:
-    ind: http://backend:8080/api/anon/auth/account/notify
-    log: http://e-fcl:8080/fclAcenterController.do?notify
+    ind: http://pin01.internal.fengchaoli.com:8080/api/anon/auth/account/notify
+    log: http://trade01-internal.fengchaoli.com:8080/fclAcenterController.do?notify
