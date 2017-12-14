@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://112.74.41.81:3306/fengchao_acenter?useUnicode=true&amp;characterEncoding=UTF-8
+    username: fcl_acenter_rw
+    password: 9tXJa^PR%I8eb%5n
+    platform: mysql
+
+
+server:
+  port: 8080
+
+
+notify:
+  url:
+    ind: http://backend:8080/api/anon/auth/account/notify
+    log: http://e-fcl:8080/fclAcenterController.do?notify

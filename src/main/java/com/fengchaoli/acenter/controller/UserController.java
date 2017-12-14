@@ -59,4 +59,14 @@ public class UserController {
         User user = userService.notify(notifyForm,client);
         return modelMapper.map(user, UserDto.class);
     }
+
+    /**
+     * 通过数据库同步数据
+     * @param currentUser
+     */
+    @PostMapping("/api/users/notifyByDb")
+    public void notifyByDb(OAuth2Authentication currentUser) {
+        String client = currentUser.getOAuth2Request().getClientId();
+        userService.notifyByDb(client);
+    }
 }

@@ -6,9 +6,11 @@ import com.fengchaoli.acenter.event.sync.user.UserSyncEvent;
 import com.fengchaoli.acenter.form.NotifyForm;
 import com.fengchaoli.acenter.form.UserForm;
 import com.fengchaoli.acenter.model.Enterprise;
+import com.fengchaoli.acenter.model.NotifyData;
 import com.fengchaoli.acenter.model.User;
 import com.fengchaoli.acenter.model.UserMeta;
 import com.fengchaoli.acenter.repository.EnterpriseRepository;
+import com.fengchaoli.acenter.repository.NotifyDataRepository;
 import com.fengchaoli.acenter.repository.UserRepository;
 import com.xiaoleilu.hutool.util.ObjectUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
@@ -17,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Transactional
@@ -31,6 +35,9 @@ public class UserService {
 
     @Autowired
     private EnterpriseRepository enterpriseRepository;
+
+    @Autowired
+    private NotifyDataRepository notifyDataRepository;
 
     public User getOne(String id){
         return userRepository.findOne(id);
@@ -96,5 +103,29 @@ public class UserService {
         applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));
 
         return user;
+    }
+
+    public void notifyByDb(String clientId){
+        List<NotifyData> list = notifyDataRepository.findAll();
+
+        for(NotifyData notifyData:list){
+            Enterprise enterprise = enterpriseRepository.findOne(notifyData.getEnterpriseId());
+            if(enterprise==null){
+                enterprise = new Enterprise();
+                enterprise.setId(notifyData.getEnterpriseId());
+                enterprise.setName(notifyData.getEnterpriseName());
+                enterpriseRepository.save(enterprise);
+                //发送企业信息
+                applicationEventMulticaster.multicastEvent(new EnterpriseSyncEvent(enterprise,clientId));
+            }
+
+            User user = new User();
+            user.setId(notifyData.getUserId());
+            user.setAccount(notifyData.getAccount());
+            user.setPassword(notifyData.getPassword());
+            userRepository.save(user);
+            //发送用户信息
+            applicationEventMulticaster.multicastEvent(new UserSyncEvent(user,clientId));
+        }
     }
 }
