@@ -43,8 +43,8 @@ public class EnterpriseService {
     public Enterprise update(String id,EnterpriseForm enterpriseForm,String clientId){
         Enterprise enterprise = enterpriseRepository.getOne(id);
         EnterpriseMeta enterpriseMeta = enterprise.getEnterpriseMetas().stream().filter(meta ->
-                ObjectUtil.equal(clientId,meta.getClientId())).findFirst().get();
-        if(enterpriseMeta==null){
+                ObjectUtil.equal(clientId,meta.getClientId())).findFirst().orElseGet(() -> new EnterpriseMeta());
+        if(enterpriseMeta.getId() == null){
             enterpriseMeta = new EnterpriseMeta();
             enterpriseMeta.setClientId(clientId);
             enterpriseMeta.setExtra(enterpriseForm.getExtra());
