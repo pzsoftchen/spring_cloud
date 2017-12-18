@@ -7,6 +7,6 @@ server:
 
 notify:
   url:
-    ind: http://backend:8080/api/anon/auth/account/notify
+    ind: http://backend:7080/api/anon/auth/account/notify
     log: http://e-fcl.test.fengchaoli.com/fclAcenterController.do?notify
 
