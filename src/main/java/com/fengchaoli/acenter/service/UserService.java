@@ -5,10 +5,7 @@ import com.fengchaoli.acenter.event.sync.enterprise.EnterpriseSyncEvent;
 import com.fengchaoli.acenter.event.sync.user.UserSyncEvent;
 import com.fengchaoli.acenter.form.NotifyForm;
 import com.fengchaoli.acenter.form.UserForm;
-import com.fengchaoli.acenter.model.Enterprise;
-import com.fengchaoli.acenter.model.NotifyData;
-import com.fengchaoli.acenter.model.User;
-import com.fengchaoli.acenter.model.UserMeta;
+import com.fengchaoli.acenter.model.*;
 import com.fengchaoli.acenter.repository.EnterpriseRepository;
 import com.fengchaoli.acenter.repository.NotifyDataRepository;
 import com.fengchaoli.acenter.repository.UserRepository;
@@ -68,9 +65,8 @@ public class UserService {
         user.setPassword(userForm.getPassword());
         user.setEnterpriseId(userForm.getEnterpriseId());
         UserMeta userMeta = user.getUserMetas().stream().filter(meta ->
-                ObjectUtil.equal(clientId, meta.getClientId())).findFirst().get();
-        if (userMeta == null) {
-            userMeta = new UserMeta();
+                ObjectUtil.equal(clientId, meta.getClientId())).findFirst().orElseGet(() -> new UserMeta());
+        if (userMeta.getId() == null) {
             userMeta.setClientId(clientId);
             userMeta.setExtra(userForm.getExtra());
             user.getUserMetas().add(userMeta);
