@@ -49,7 +49,8 @@ public class UserService {
         user.setPassword(userForm.getPassword());
         user.setEnterpriseId(userForm.getEnterpriseId());
 
-        UserMeta userMeta = new UserMeta();
+        UserMeta userMeta = user.getUserMetas().stream().filter(meta ->
+                ObjectUtil.equal(clientId, meta.getClientId())).findFirst().orElseGet(() -> new UserMeta());
         userMeta.setClientId(clientId);
         userMeta.setExtra(userForm.getExtra());
         user.getUserMetas().add(userMeta);

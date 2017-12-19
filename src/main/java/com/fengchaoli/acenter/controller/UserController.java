@@ -54,7 +54,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/api/users/notify")
-    public UserDto notify(NotifyForm notifyForm, OAuth2Authentication currentUser) {
+    public UserDto notify(@Valid @ModelAttribute NotifyForm notifyForm, OAuth2Authentication currentUser) {
         String client = currentUser.getOAuth2Request().getClientId();
         User user = userService.notify(notifyForm,client);
         return modelMapper.map(user, UserDto.class);

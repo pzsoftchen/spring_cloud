@@ -32,7 +32,6 @@ public class UserDetailsService implements org.springframework.security.core.use
         return new SecurityUser(user,
                 true, true, true, true,
                 getAuthorities(roleRepository.findAll()));
-
     }
 
     private Collection<GrantedAuthority> getAuthorities(Collection<Role> roles) {
