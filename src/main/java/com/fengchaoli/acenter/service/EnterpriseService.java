@@ -27,7 +27,9 @@ public class EnterpriseService {
     }
 
     public Enterprise insert(String id, EnterpriseForm enterpriseForm, String clientId){
-        Enterprise enterprise = new Enterprise();
+        Enterprise enterprise = enterpriseRepository.findFirstByName(enterpriseForm.getName());
+        if (enterprise == null)
+            enterprise = new Enterprise();
         enterprise.setName(enterpriseForm.getName());
 
         EnterpriseMeta enterpriseMeta = enterprise.getEnterpriseMetas().stream().filter(meta ->
