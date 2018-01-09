@@ -11,6 +11,8 @@ import com.fengchaoli.acenter.repository.NotifyDataRepository;
 import com.fengchaoli.acenter.repository.UserRepository;
 import com.xiaoleilu.hutool.util.ObjectUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ApplicationEventMulticaster;
@@ -22,6 +24,7 @@ import java.util.List;
 
 @Transactional
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
@@ -102,10 +105,18 @@ public class UserService {
         return user;
     }
 
+    @SneakyThrows
     public void notifyByDb(String clientId) {
         List<NotifyData> list = notifyDataRepository.findAll();
 
+
+        int i = 0;
         for (NotifyData notifyData : list) {
+            i++;
+            if(i%10==0){
+                log.info("同步暂停10秒钟，等待回收线程！");
+                Thread.sleep(10000L);
+            }
             Enterprise enterprise = enterpriseRepository.findOne(notifyData.getEnterpriseId());
             if (enterprise == null) {
                 enterprise = new Enterprise();

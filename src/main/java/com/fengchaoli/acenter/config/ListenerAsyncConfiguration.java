@@ -23,9 +23,9 @@ public class ListenerAsyncConfiguration implements AsyncConfigurer {
         //使用Spring内置线程池任务对象
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         //设置线程池参数
-        taskExecutor.setCorePoolSize(5);
-        taskExecutor.setMaxPoolSize(10);
-        taskExecutor.setQueueCapacity(25);
+        taskExecutor.setCorePoolSize(30);
+        taskExecutor.setMaxPoolSize(100);
+        taskExecutor.setQueueCapacity(75);
         taskExecutor.initialize();
         return taskExecutor;
     }
