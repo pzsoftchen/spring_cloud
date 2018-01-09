@@ -1,5 +1,6 @@
 package com.fengchaoli.acenter.service;
 
+import com.alibaba.fastjson.JSON;
 import com.fengchaoli.acenter.dto.UserDto;
 import com.fengchaoli.acenter.event.sync.enterprise.EnterpriseSyncEvent;
 import com.fengchaoli.acenter.event.sync.user.UserSyncEvent;
@@ -109,7 +110,7 @@ public class UserService {
     public void notifyByDb(String clientId) {
         List<NotifyData> list = notifyDataRepository.findAll();
 
-
+        log.info("同步开始》》》》》》》》》");
         int i = 0;
         for (NotifyData notifyData : list) {
             i++;
@@ -117,6 +118,8 @@ public class UserService {
                 log.info("同步暂停10秒钟，等待回收线程！");
                 Thread.sleep(10000L);
             }
+            log.info("notifyData："+JSON.toJSONString(notifyData));
+
             Enterprise enterprise = enterpriseRepository.findOne(notifyData.getEnterpriseId());
             if (enterprise == null) {
                 enterprise = new Enterprise();
@@ -138,5 +141,6 @@ public class UserService {
             //发送用户信息
             applicationEventMulticaster.multicastEvent(new UserSyncEvent(user, clientId));
         }
+        log.info("同步结束》》》》》》》》》");
     }
 }
