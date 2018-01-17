@@ -58,7 +58,7 @@ public class UserSyncIndListener implements SmartApplicationListener
     @Override
     public boolean supportsSourceType(Class<?> aClass) {
         //只有在UserService内发布的UserRegisterEvent事件时才会执行下面逻辑
-        return false;
+        return true;
     }
 
     /**
