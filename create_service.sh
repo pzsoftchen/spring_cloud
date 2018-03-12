@@ -17,13 +17,13 @@ registry.cn-shenzhen.aliyuncs.com/nothing/nothing-chain:1.0
 #geteway
 docker service create --with-registry-auth --network fengchaoli \
 --name gateway --log-opt max-size=100m --log-opt max-file=3 \
-rregistry-internal.cn-shenzhen.aliyuncs.com/new_fengchaoli/gateway:latest
+registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/gateway:1.0
 
 
 #ucenter
 docker service create --with-registry-auth --network fengchaoli \
 --name ucenter --log-opt max-size=100m --log-opt max-file=3 \
-registry-internal.cn-shenzhen.aliyuncs.com/new_fengchaoli/ucenter:latest
+registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/ucenter:1.0
 
 
 #backend
