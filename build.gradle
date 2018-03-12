@@ -16,7 +16,7 @@ allprojects {
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
 
-	group = 'registry.cn-shenzhen.aliyuncs.com/nothing'
+	group = 'registry.cn-shenzhen.aliyuncs.com/new_fengchaoli'
 	version = '1.0'
 	sourceCompatibility = 1.8
 
@@ -30,14 +30,13 @@ allprojects {
 	dependencies {
 		compile('org.springframework.boot:spring-boot-starter-web')
 		compile('org.springframework.boot:spring-boot-starter-actuator')
-		compile('org.springframework.boot:spring-boot-starter-data-jpa')
-		compile('org.springframework.boot:spring-boot-starter-data-rest')
+
 		compile('org.springframework.cloud:spring-cloud-starter-security')
 		compile('org.springframework.cloud:spring-cloud-starter-oauth2')
-		compile('org.springframework.cloud:spring-cloud-starter-zipkin')
-		compile('org.springframework.cloud:spring-cloud-starter-feign')
-		compile('org.springframework.cloud:spring-cloud-starter-eureka')
-		compile('org.springframework.security:spring-security-data')
+		//compile('org.springframework.cloud:spring-cloud-starter-zipkin')
+		//compile('org.springframework.cloud:spring-cloud-starter-feign')
+		//compile('org.springframework.cloud:spring-cloud-starter-eureka')
+		//compile('org.springframework.security:spring-security-data')
 		compile('com.xiaoleilu:hutool-all:3.2.0')
 		compile('org.modelmapper:modelmapper:1.1.0')
 		compile('org.projectlombok:lombok')

@@ -12,11 +12,11 @@ spring:
   jpa:
       hibernate:
         ddl-auto: update
-  data:
-      rest:
-        basePath: /api
+#  data:
+#      rest:
+#        basePath: /api
 
-#logging.level.org.springframework.security: DEBUG
+logging.level.org.springframework.security: DEBUG
 
 #logging.leve.org.springframework: DEBUG
 

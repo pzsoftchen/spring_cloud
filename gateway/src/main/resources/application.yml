@@ -17,7 +17,7 @@ zuul:
       sensitiveHeaders:
       #serviceId: ucenter
       url: http://localhost:9999/
-    order:
+    financial:
       path: /order/**
       sensitiveHeaders:
       #serviceId: backend  //先屏蔽服务发现
