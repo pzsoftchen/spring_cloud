@@ -21,7 +21,7 @@ zuul:
       path: /fcl/**
       sensitiveHeaders:
       #serviceId: backend  //先屏蔽服务发现
-      url: http://e-fcl.test.fengchaoli.com
+      url: http://e_fcl:8080
   add-proxy-headers: true
 
 security:
