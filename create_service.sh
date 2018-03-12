@@ -15,16 +15,15 @@ registry.cn-shenzhen.aliyuncs.com/nothing/nothing-chain:1.0
 
 
 #geteway
-docker service create --with-registry-auth --network springcloud \
---name api-gateway --log-opt max-size=100m --log-opt max-file=3 \
--p 8080:80 \
-registry.cn-shenzhen.aliyuncs.com/nothing/nothing-gateway:1.0
+docker service create --with-registry-auth --network fengchaoli \
+--name gateway --log-opt max-size=100m --log-opt max-file=3 \
+rregistry-internal.cn-shenzhen.aliyuncs.com/new_fengchaoli/gateway:latest
 
 
 #ucenter
-docker service create --with-registry-auth --network springcloud \
+docker service create --with-registry-auth --network fengchaoli \
 --name ucenter --log-opt max-size=100m --log-opt max-file=3 \
-registry.cn-shenzhen.aliyuncs.com/nothing/nothing-ucenter:1.0
+registry-internal.cn-shenzhen.aliyuncs.com/new_fengchaoli/ucenter:latest
 
 
 #backend
