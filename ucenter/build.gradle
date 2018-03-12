@@ -1,0 +1,6 @@
+dependencies {
+    compile('org.springframework.social:spring-social-core')
+    compile('org.springframework.social:spring-social-web')
+    compile('org.springframework.social:spring-social-config')
+    compile('org.springframework.social:spring-social-security')
+}
