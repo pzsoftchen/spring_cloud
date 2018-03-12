@@ -65,13 +65,13 @@ allprojects {
 		}
 		task dockerBuild(type: Docker, dependsOn: build) {
 			applicationName = project.name
+			//opts='-server -Xms256m -Xmx512m -XX:SurvivorRatio=2 -XX:+PrintClassHistogram -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -Xloggc:gc.log'
 			addFile {
 				from configurations.archives.artifacts.files
 				into '/data/workspace/' + project.name
 			}
 			workingDir '/data/workspace/' + project.name
-			setEnvironment('HOST_MACHINE_IP', hostMachineIp)
-			defaultCommand(['java', '-jar', '-Dspring.profiles.active=test', "${project.name}-${project.version}.jar"])
+			defaultCommand(['java', '-jar', '-Dspring.profiles.active=dev', "${project.name}-${project.version}.jar"])
 		}
 	}
 }
