@@ -22,7 +22,7 @@ zuul:
       sensitiveHeaders:
       #serviceId: backend  //先屏蔽服务发现
       url: http://localhost:8083/
-  add-proxy-headers: true
+  add-proxy-headers: false
 
 security:
   oauth2:

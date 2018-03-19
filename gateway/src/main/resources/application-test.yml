@@ -22,7 +22,7 @@ zuul:
       sensitiveHeaders:
       #serviceId: backend  //先屏蔽服务发现
       url: http://e_fcl:8080
-  add-proxy-headers: true
+  add-proxy-headers: false
 
 security:
   oauth2:
