@@ -12,6 +12,7 @@ import org.springframework.web.filter.CorsFilter;
 
 @SpringBootApplication
 @EnableZuulProxy
+@EnableOAuth2Sso
 public class GatewayApplication {
 
 	public static void main(String[] args) {
