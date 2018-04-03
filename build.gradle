@@ -29,10 +29,7 @@ allprojects {
 
 	dependencies {
 		compile('org.springframework.boot:spring-boot-starter-web')
-		compile('org.springframework.boot:spring-boot-starter-actuator')
-
-		compile('org.springframework.cloud:spring-cloud-starter-security')
-		compile('org.springframework.cloud:spring-cloud-starter-oauth2')
+		//compile('org.springframework.boot:spring-boot-starter-actuator')
 		//compile('org.springframework.cloud:spring-cloud-starter-zipkin')
 		//compile('org.springframework.cloud:spring-cloud-starter-feign')
 		//compile('org.springframework.cloud:spring-cloud-starter-eureka')
@@ -43,7 +40,7 @@ allprojects {
 		compile('com.alibaba:fastjson:1.2.32')
 		runtime('mysql:mysql-connector-java')
 		testCompile('org.springframework.boot:spring-boot-starter-test')
-		testCompile('org.springframework.security:spring-security-test')
+		//testCompile('org.springframework.security:spring-security-test')
 	}
 
 	dependencyManagement {

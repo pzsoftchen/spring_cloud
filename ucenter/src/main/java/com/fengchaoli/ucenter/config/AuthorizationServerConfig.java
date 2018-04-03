@@ -1,10 +1,13 @@
 package com.fengchaoli.ucenter.config;
 
+import com.fengchaoli.ucenter.exception.WebResponseExceptionTranslator;
 import com.fengchaoli.ucenter.service.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -12,6 +15,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import javax.sql.DataSource;
 
@@ -29,6 +33,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private WebResponseExceptionTranslator webResponseExceptionTranslator;
+
     @Bean
     public TokenStore tokenStore(){
         return new JdbcTokenStore(dataSource);
@@ -38,6 +45,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .authenticationManager(authenticationManager)
+                .exceptionTranslator(webResponseExceptionTranslator)
+                .accessTokenConverter(jwtAccessTokenConverter())
+                .reuseRefreshTokens(false)
                 .userDetailsService(userDetailsService)//若无，refresh_token会有UserDetailsService is required错误
                 .tokenStore(tokenStore());
     }
@@ -45,8 +55,21 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) {
         security
-                .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()").allowFormAuthenticationForClients();
+                .allowFormAuthenticationForClients()
+                .tokenKeyAccess("isAuthenticated()")
+                .checkTokenAccess("permitAll()");
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setSigningKey("cola-cloud");
+        return jwtAccessTokenConverter;
     }
 
     @Override
