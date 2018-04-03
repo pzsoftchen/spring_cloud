@@ -41,15 +41,15 @@ public class SwaggerConfiguration {
                 .securitySchemes(Lists.newArrayList(apiKey()))
                 .select()
                 .paths(PathSelectors.any())
-                .apis(RequestHandlerSelectors.basePackage("com.honvay.cola"))
+                .apis(RequestHandlerSelectors.basePackage("com.fengchaoli"))
                 .paths(PathSelectors.any()).build().globalOperationParameters(pars);
 
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Cola-Cloud")
-                .description("Cola cloud Restful API docs")
+                .title("蜂巢里")
+                .description("接口文档")
                 .termsOfServiceUrl("http://localhost:8080")
                 .contact(new Contact("", "", ""))
                 .version("1.0")
