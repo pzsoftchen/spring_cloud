@@ -21,10 +21,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author LIQIU
- * @date 2018-3-8
- **/
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration {

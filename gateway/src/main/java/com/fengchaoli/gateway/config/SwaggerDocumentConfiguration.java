@@ -8,10 +8,6 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author LIQIU
- * @date 2018-3-8
- **/
 @Component
 @Primary
 public class SwaggerDocumentConfiguration implements SwaggerResourcesProvider {
