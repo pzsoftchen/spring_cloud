@@ -1,4 +1,4 @@
-package com.fengchaoli.monitor.config;
+package com.fengchaoli.config.config;
 
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;

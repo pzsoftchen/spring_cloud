@@ -1,35 +1,9 @@
 spring:
-  profiles:
-    active: ${SPRING_PROFILES_ACTIVE:dev}
   application:
-      name: gateway
-#  cloud:
-#    config:
-#      uri: http://${config.host:192.168.1.140}:${config.port:8888}
-
-server:
-  port: 80
-
-zuul:
-  routes:
-    uaa:
-      path: /uaa/**
-      sensitiveHeaders:
-      #serviceId: ucenter
-      url: http://ucenter/
-    fcl:
-      path: /fcl/**
-      sensitiveHeaders:
-      #serviceId: backend  //先屏蔽服务发现
-      url: http://e_fcl:8080
-  add-proxy-headers: false
-
-#security:
-#  oauth2:
-#    client:
-#      access-token-uri: http://ucenter/uaa/oauth/token
-#      user-authorization-uri: http://ucenter/uaa/oauth/authorize
-#      client-id: webapp
-#    resource:
-#      user-info-uri: http://ucenter/uaa/user
-#      prefer-token-info: false
+    name: gateway
+  cloud:
+    config:
+      uri: http://config
+      fail-fast: true
+      password: 123456
+      username: user

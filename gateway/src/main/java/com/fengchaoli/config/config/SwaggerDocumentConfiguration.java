@@ -1,4 +1,4 @@
-package com.fengchaoli.monitor.config;
+package com.fengchaoli.config.config;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;

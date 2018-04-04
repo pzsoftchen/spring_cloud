@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @SpringBootApplication
 @EnableResourceServer
 @EnableOAuth2Client
+@EnableDiscoveryClient
 public class UcenterApplication {
 
 	public static void main(String[] args) {

@@ -1,0 +1,29 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+
+  routes:
+    ucenter:
+        path: /uaa/**
+        serviceId: auth-service
+        stripPrefix: false
+        sensitiveHeaders:
+    fcl:
+        path: /fcl/**
+        sensitiveHeaders:
+        #serviceId: backend  //先屏蔽服务发现
+        url: http://192.168.10.143:8080/fcl

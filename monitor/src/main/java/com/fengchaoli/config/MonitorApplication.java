@@ -1,4 +1,4 @@
-package com.fengchaoli.monitor;
+package com.fengchaoli.config;
 
 import de.codecentric.boot.admin.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
