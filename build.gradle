@@ -68,7 +68,7 @@ allprojects {
 				into '/data/workspace/' + project.name
 			}
 			workingDir '/data/workspace/' + project.name
-			defaultCommand(['java', '-jar', '-Dspring.profiles.active=test', "${project.name}-${project.version}.jar"])
+			defaultCommand(['java', '-jar', "-Dspring.profiles.active=${System.env.spring_env}", "${project.name}-${project.version}.jar"])
 		}
 	}
 }
