@@ -19,7 +19,7 @@ zuul:
   routes:
     ucenter:
         path: /uaa/**
-        serviceId: auth-service
+        serviceId: ucenter
         stripPrefix: false
         sensitiveHeaders:
     fcl:
