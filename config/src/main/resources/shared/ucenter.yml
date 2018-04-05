@@ -4,3 +4,26 @@ spring:
       filter-order: 0
       user-info-uri: /users/current
 
+spring:
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://120.76.215.203:3306/fengchao_acenter?useUnicode=true&amp;characterEncoding=UTF-8
+      username: fcl_dev_sa
+      password: 5vcB#RBaHCuWdTbDrKt4$pBvEHfcbhGb
+      platform: mysql
+  jpa:
+      hibernate:
+        ddl-auto: update
+#  data:
+#      rest:
+#        basePath: /api
+
+logging.level.org.springframework.security: DEBUG
+
+#logging.leve.org.springframework: DEBUG
+
+
+notify:
+  url:
+    ind: http://192.168.10.91:8080/api/anon/auth/account/notify
+    log: http://192.168.10.119:8080/fcl/fclAcenterController.do?notify
