@@ -4,5 +4,5 @@ spring:
       filter-order: 0
       user-info-uri: /users/current
 server:
-  context-path: /uaa
-  port: 5000
+  port: 80
+

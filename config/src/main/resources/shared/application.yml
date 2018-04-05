@@ -3,9 +3,6 @@ logging:
     org.springframework.security: INFO
   path: ../logs
 
-server:
-  port: 80   #使用docker容器，默认都采用80端口
-
 hystrix:
   command:
     default:
