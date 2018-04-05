@@ -3,8 +3,6 @@ spring:
     resource:
       filter-order: 0
       user-info-uri: /users/current
-
-spring:
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://120.76.215.203:3306/fengchao_acenter?useUnicode=true&amp;characterEncoding=UTF-8
