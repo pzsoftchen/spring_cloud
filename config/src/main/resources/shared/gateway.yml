@@ -27,6 +27,3 @@ zuul:
         sensitiveHeaders:
         #serviceId: backend  //先屏蔽服务发现
         url: http://192.168.10.143:8080/fcl
-
-server:
-  port: 80
