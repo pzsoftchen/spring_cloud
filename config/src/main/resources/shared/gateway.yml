@@ -15,7 +15,8 @@ zuul:
   host:
     connect-timeout-millis: 60000
     socket-timeout-millis: 60000
-
+  debug:
+    request: true
   routes:
     ucenter:
         path: /uaa/**
