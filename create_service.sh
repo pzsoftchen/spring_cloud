@@ -9,16 +9,24 @@ registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/config:latest
 #registry
 docker service create --with-registry-auth --network fengchaoli \
 --name registry --log-opt max-size=100m --log-opt max-file=3 \
+-p 8367:80 \
 registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/registry:latest
 
 #zipkin
 docker service create --with-registry-auth --network fengchaoli \
 --name zipkin --log-opt max-size=100m --log-opt max-file=3 \
+-p 8368:80 \
 registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/zipkin:latest
+
+#rabbitmq
+docker service create --with-registry-auth --network fengchaoli \
+--name rabbitmq --log-opt max-size=100m --log-opt max-file=3 \
+rabbitmq:latest
 
 #monitor
 docker service create --with-registry-auth --network fengchaoli \
 --name monitor --log-opt max-size=100m --log-opt max-file=3 \
+-p 8369:80 \
 registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/monitor:latest
 
 #geteway
