@@ -20,7 +20,7 @@ zuul:
     ucenter:
         path: /uaa/**
         serviceId: ucenter
-        stripPrefix: false
+        #stripPrefix: true
         sensitiveHeaders:
     fcl:
         path: /fcl/**

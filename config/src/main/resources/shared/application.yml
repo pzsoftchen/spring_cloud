@@ -15,8 +15,8 @@ hystrix:
             timeoutInMilliseconds: 10000
 eureka:
   instance:
-    prefer-ip-address: false
-    ip-address: ${spring.application.name}
+    prefer-ip-address: true
+    #ip-address: ${spring.application.name}
     #instance-id: ${spring.application.name}:${server.port}
   client:
     serviceUrl:
