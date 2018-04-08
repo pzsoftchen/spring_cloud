@@ -16,6 +16,7 @@ hystrix:
 eureka:
   instance:
     prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
   client:
     serviceUrl:
       defaultZone: http://registry/eureka/
