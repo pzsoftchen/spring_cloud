@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: sidecar
+  cloud:
+    config:
+      uri: http://config
+      fail-fast: true
+      password: 123456
+      username: user

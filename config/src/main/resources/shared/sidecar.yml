@@ -1,0 +1,4 @@
+
+sidecar:
+    port: 80
+    health-uri: http://e-fcl.test.fengchaoli.com:${sidecar.port}/health
