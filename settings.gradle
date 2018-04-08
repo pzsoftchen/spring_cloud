@@ -21,5 +21,4 @@ dir.eachDirRecurse { subDir ->
         }
     }
 }
-include 'sidecar'
 

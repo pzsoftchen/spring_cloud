@@ -40,7 +40,11 @@ docker service create --with-registry-auth --network fengchaoli \
 -e spring_env=test \
 registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/ucenter:latest
 
-
+#sidecar
+docker service create --with-registry-auth --network fengchaoli \
+--name sidecar --log-opt max-size=100m --log-opt max-file=3 \
+-e spring_env=test \
+registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/sidecar:latest
 
 
 #monitor
