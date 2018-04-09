@@ -1,10 +1,10 @@
 docker network create -d overlay --subnet=192.168.66.0/24 fengchaoli
 
 #config
-docker service create --with-registry-auth --network fengchaoli \
---name config --log-opt max-size=100m --log-opt max-file=3 \
--e spring_env=native \
-registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/config:latest
+    docker service create --with-registry-auth --network fengchaoli \
+    --name config --log-opt max-size=100m --log-opt max-file=3 \
+    -e spring_env=native \
+    registry-internal.cn-shenzhen.aliyuncs.com/dev_new_fengchaoli/config:latest
 
 #registry
 docker service create --with-registry-auth --network fengchaoli \

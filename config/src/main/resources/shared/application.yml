@@ -22,8 +22,8 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://registry/eureka/
-zipkin:
-    base-url: http://zikpin
+#zipkin:
+    #base-url: http://zikpin
 security:
   oauth2:
     resource:
