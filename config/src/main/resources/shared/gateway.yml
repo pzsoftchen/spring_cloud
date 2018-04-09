@@ -27,5 +27,5 @@ zuul:
         path: /fcl/**
         sensitiveHeaders:
         #stripPrefix: true
-        serviceId: sidecar  //先屏蔽服务发现
+        serviceId: sidecar
         #url: http://192.168.10.143:8080/fcl
