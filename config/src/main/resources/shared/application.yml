@@ -1,5 +1,6 @@
 logging:
   level:
+    root: DEBUG
     org.springframework.security: INFO
   path: ../logs
 
@@ -26,11 +27,11 @@ zipkin:
 security:
   oauth2:
     resource:
-      user-info-uri: http://ucenter/uaa/current
+      user-info-uri: http://ucenter/current
     client:
       clientId: server
       clientSecret: server
-      accessTokenUri: http://ucenter/uaa/oauth/token
+      accessTokenUri: http://ucenter/oauth/token
       grant-type: client_credentials
       scope: server
 spring:
