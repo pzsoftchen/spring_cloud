@@ -1,4 +1,4 @@
-    spring:
+   spring:
       sleuth:
           enabled: false
       datasource:
@@ -7,6 +7,6 @@
           username: fcl_dev_sa
           password: 5vcB#RBaHCuWdTbDrKt4$pBvEHfcbhGb
           platform: mysql
-     zipkin:
+   zipkin:
       storage:
           type: mysql
