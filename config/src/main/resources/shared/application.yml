@@ -40,6 +40,7 @@ spring:
     port: 5672
     username: guest
     password: guest
+    virtual-host: /dev
   sleuth:
     sampler:
       percentage: 1
