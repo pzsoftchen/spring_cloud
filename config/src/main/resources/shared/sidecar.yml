@@ -1,6 +1,6 @@
 
 sidecar:
-    port: 8366
-    hostname: 120.76.215.203
-    health-uri: http://120.76.215.203:${sidecar.port}/rest/open/api/health
-    home-page-uri: http://120.76.215.203:${sidecar.port}/
+    port: 80
+    hostname: e-fcl.test.fengchaoli.com
+    health-uri: http://e-fcl.test.fengchaoli.com:${sidecar.port}/rest/open/api/health
+    home-page-uri: http://e-fcl.test.fengchaoli.com:${sidecar.port}/
