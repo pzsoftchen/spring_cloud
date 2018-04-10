@@ -34,16 +34,11 @@ public class SidecarApplication {
 		final String sidecarHostname = properties.getHostname();
 		final Integer sidecarPort = properties.getPort();
 
-		try {
+		final EurekaInstanceConfigBean instance = new EurekaInstanceConfigBean(inetUtils);
+		instance.setHostname(sidecarHostname);
+		instance.setIpAddress(sidecarHostname);
+		instance.setNonSecurePort(sidecarPort);
+		return instance;
 
-			final EurekaInstanceConfigBean instance = new EurekaInstanceConfigBean(inetUtils);
-			instance.setHostname(sidecarHostname);
-			instance.setIpAddress(inetUtils.convertAddress(InetAddress.getByName(sidecarHostname)).getIpAddress());
-			instance.setNonSecurePort(sidecarPort);
-			return instance;
-
-		} catch(UnknownHostException e) {
-			throw new IllegalStateException("Could not resolve IP address of sidecar application using hostname: " + sidecarHostname);
-		}
 	}
 }
