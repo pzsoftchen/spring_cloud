@@ -109,7 +109,8 @@ public class WeixinOAuth2Template extends OAuth2Template {
     public String buildAuthenticateUrl(OAuth2Parameters parameters) {
         parameters.set("redirect_uri", "http://290backend.fengchaoli.com/uaa/api/users/current");
         String url = super.buildAuthenticateUrl(parameters);
-        url = url + "&appid="+clientId+"&scope=snsapi_login";
+        //url = url + "&appid="+clientId+"&scope=snsapi_login";
+        url = url + "&appid="+clientId+"&scope=snsapi_userinfo";
         return url;
     }
 
