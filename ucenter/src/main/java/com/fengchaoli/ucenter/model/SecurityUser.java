@@ -2,11 +2,12 @@ package com.fengchaoli.ucenter.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.social.security.SocialUserDetails;
 
 import java.util.Collection;
 
 @Data
-public class SecurityUser extends org.springframework.security.core.userdetails.User {
+public class SecurityUser extends org.springframework.security.core.userdetails.User implements SocialUserDetails {
 
     private String userId;
 

@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.social.security.SocialUserDetails;
+import org.springframework.social.security.SocialUserDetailsService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Transactional
 @Service
-public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService,SocialUserDetailsService {
     @Autowired
     UserRepository userRepository;
 
@@ -29,6 +32,14 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String account) {
         User user = userRepository.findFirstByAccount(account);
+        return new SecurityUser(user,
+                true, true, true, true,
+                getAuthorities(roleRepository.findAll()));
+    }
+
+    @Override
+    public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
+        User user = userRepository.findFirstByAccount(userId);
         return new SecurityUser(user,
                 true, true, true, true,
                 getAuthorities(roleRepository.findAll()));
@@ -55,5 +66,6 @@ public class UserDetailsService implements org.springframework.security.core.use
                 .map(privilege -> new SimpleGrantedAuthority(privilege))
                 .collect(Collectors.toList());
     }
+
 
 }
