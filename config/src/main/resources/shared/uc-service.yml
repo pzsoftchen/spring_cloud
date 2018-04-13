@@ -1,3 +1,0 @@
-server:
-  context-path: /uc
-  port: 6000
