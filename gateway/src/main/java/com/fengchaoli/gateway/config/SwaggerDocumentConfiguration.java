@@ -15,7 +15,7 @@ public class SwaggerDocumentConfiguration implements SwaggerResourcesProvider {
     @Override
     public List<SwaggerResource> get() {
         List resources = new ArrayList<>();
-        resources.add(swaggerResource("e-fcl", "/fcl/rest/v2/api-docs?group=api", "2.0"));
+        resources.add(swaggerResource("产业金融", "/fcl/rest/v2/ext/api-docs?group=api", "2.0"));
 //        resources.add(swaggerResource("认证中心", "/uaa/v2/api-docs", "2.0"));
 //        resources.add(swaggerResource("用户中心", "/uc/v2/api-docs", "2.0"));
 //        resources.add(swaggerResource("权限系统", "/upm/v2/api-docs", "2.0"));
