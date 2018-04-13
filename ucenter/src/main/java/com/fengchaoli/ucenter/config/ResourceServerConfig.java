@@ -21,7 +21,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.apply(merryyouSpringSocialConfigurer).and().authorizeRequests()
-                .antMatchers("/v2/api-docs", "/app/token", "/sms/token", "/socialRegister/weixin").permitAll()
+                .antMatchers("/v2/api-docs", "/app/token", "/sms/token", "/socialRegister").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated();
     }
 }
