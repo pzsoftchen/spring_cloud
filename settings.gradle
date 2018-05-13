@@ -5,7 +5,7 @@ def projectSymbol = File.separator + 'src'
 dir.eachDirRecurse { subDir ->
     def subDirName = subDir.canonicalPath
     def isSubProject = true
-    if (subDirName.endsWith(projectSymbol)&& !subDirName.endsWith('basic') && !subDirName.endsWith('-client')) {
+    if (subDirName.endsWith(projectSymbol)) {
         for (String projectDir in projects) {
             if (subDirName.startsWith(projectDir)) {
                 isSubProject = false
@@ -16,8 +16,10 @@ dir.eachDirRecurse { subDir ->
             projects << subDirName
             def lastIndex = subDirName.lastIndexOf(projectSymbol)
             def gradleModulePath = subDirName.substring(dir.canonicalPath.length(), lastIndex).replace(File.separator, ':')
-            println "include " + gradleModulePath
-            include gradleModulePath
+            if(!gradleModulePath.endsWith('basic')&&!gradleModulePath.endsWith('-client')) {
+                println "include " + gradleModulePath
+                include gradleModulePath
+            }
         }
     }
 }
