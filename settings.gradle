@@ -5,7 +5,7 @@ def projectSymbol = File.separator + 'src'
 dir.eachDirRecurse { subDir ->
     def subDirName = subDir.canonicalPath
     def isSubProject = true
-    if (subDirName.endsWith(projectSymbol)) {
+    if (subDirName.endsWith(projectSymbol)&& !subDirName.startsWith('basic') && !subDirName.endsWith('-client')) {
         for (String projectDir in projects) {
             if (subDirName.startsWith(projectDir)) {
                 isSubProject = false
