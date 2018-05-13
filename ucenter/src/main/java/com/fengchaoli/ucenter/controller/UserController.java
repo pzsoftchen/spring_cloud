@@ -2,7 +2,7 @@ package com.fengchaoli.ucenter.controller;
 
 import com.fengchaoli.basic.security.SecurityUser;
 import com.fengchaoli.ucenter.client.UserClient;
-import com.fengchaoli.ucenter.dto.UserDto;
+import com.fengchaoli.ucenter.dto.UserDTO;
 import com.fengchaoli.ucenter.model.User;
 import com.fengchaoli.ucenter.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -23,9 +23,9 @@ public class UserController implements UserClient {
 
     @Override
     @GetMapping("/api/users/current")
-    public UserDto user(OAuth2Authentication currentUser) {
+    public UserDTO user(OAuth2Authentication currentUser) {
         String userId = ((SecurityUser)currentUser.getPrincipal()).getUserId();
         User user = userService.getOne(userId);
-        return modelMapper.map(user, UserDto.class);
+        return modelMapper.map(user, UserDTO.class);
     }
 }

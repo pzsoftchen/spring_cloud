@@ -1,6 +1,6 @@
 package com.fengchaoli.ucenter.client;
 
-import com.fengchaoli.ucenter.dto.UserDto;
+import com.fengchaoli.ucenter.dto.UserDTO;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface UserClient {
 
     @GetMapping("/api/users/current")
-    UserDto user(OAuth2Authentication currentUser);
+    UserDTO user(OAuth2Authentication currentUser);
 
 }

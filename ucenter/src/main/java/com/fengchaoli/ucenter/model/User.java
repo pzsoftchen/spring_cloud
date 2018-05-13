@@ -1,5 +1,6 @@
 package com.fengchaoli.ucenter.model;
 
+import com.fengchaoli.basic.entity.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.util.List;
 @Entity
 @Table
 @Data
-public class User extends BaseModel{
+public class User extends BaseEntity {
     @Column
     private String account;
 
