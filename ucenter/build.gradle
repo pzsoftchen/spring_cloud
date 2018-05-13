@@ -13,4 +13,6 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-sleuth-zipkin-stream')
     compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
     //compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+    compile project(':basic')
+    compile project(':ucenter-client')
 }

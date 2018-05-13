@@ -1,8 +1,8 @@
 package com.fengchaoli.ucenter.social.qq.api.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fengchaoli.ucenter.social.qq.api.QQ;
 import com.fengchaoli.ucenter.social.qq.api.QQUserInfo;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;

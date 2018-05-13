@@ -17,6 +17,4 @@ public class UserDto{
     private String enterpriseId;
 
     private List<UserMetaDto> userMetas = new ArrayList<>();
-
-    private EnterpriseDto enterpriseDto;
 }

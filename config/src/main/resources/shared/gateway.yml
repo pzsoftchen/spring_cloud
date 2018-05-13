@@ -24,8 +24,7 @@ zuul:
         #stripPrefix: true
         sensitiveHeaders:
     fcl:
-        path: /fcl/**
+        path: /order/**
         sensitiveHeaders:
         #stripPrefix: true
-        serviceId: sidecar
-        #url: http://192.168.10.143:8080/fcl
+        serviceId: ocenter

@@ -2,7 +2,7 @@ package com.fengchaoli.ucenter.form;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 @Data

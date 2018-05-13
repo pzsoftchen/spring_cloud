@@ -1,8 +1,8 @@
 package com.fengchaoli.ucenter.social.weixin.api.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fengchaoli.ucenter.social.weixin.api.Weixin;
 import com.fengchaoli.ucenter.social.weixin.api.WeixinUserInfo;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;

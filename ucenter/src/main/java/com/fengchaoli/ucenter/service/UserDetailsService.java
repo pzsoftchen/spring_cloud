@@ -1,7 +1,7 @@
 package com.fengchaoli.ucenter.service;
 
+import com.fengchaoli.basic.security.SecurityUser;
 import com.fengchaoli.ucenter.model.Role;
-import com.fengchaoli.ucenter.model.SecurityUser;
 import com.fengchaoli.ucenter.model.User;
 import com.fengchaoli.ucenter.repository.RoleRepository;
 import com.fengchaoli.ucenter.repository.UserRepository;
@@ -32,7 +32,7 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String account) {
         User user = userRepository.findFirstByAccount(account);
-        return new SecurityUser(user,
+        return new SecurityUser(user.getId(),user.getAccount(),user.getPassword(),
                 true, true, true, true,
                 getAuthorities(roleRepository.findAll()));
     }
@@ -40,7 +40,7 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public SocialUserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
         User user = userRepository.findFirstByAccount(userId);
-        return new SecurityUser(user,
+        return new SecurityUser(user.getId(),user.getAccount(),user.getPassword(),
                 true, true, true, true,
                 getAuthorities(roleRepository.findAll()));
     }

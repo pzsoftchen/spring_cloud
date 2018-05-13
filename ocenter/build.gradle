@@ -1,0 +1,17 @@
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile('org.springframework:spring-aspects')
+    compile('org.springframework:spring-instrument')
+    //compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    //compile('org.springframework.cloud:spring-cloud-starter-config')
+    //compile('org.springframework.cloud:spring-cloud-sleuth-zipkin-stream')
+    //compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
+    //compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+    compile('org.squirrelframework:squirrel-foundation:0.3.8'){
+        exclude group: 'org.slf4j'
+    }
+    compile project(':basic')
+    compile project(':ocenter-client')
+}
