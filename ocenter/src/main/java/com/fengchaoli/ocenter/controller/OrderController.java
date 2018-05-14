@@ -1,9 +1,11 @@
 package com.fengchaoli.ocenter.controller;
 
 
+import com.fengchaoli.basic.security.SecurityUser;
 import com.fengchaoli.ocenter.dto.OrderItemDTO;
 import com.fengchaoli.ocenter.statemachine.OrderStateMachineEngine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +28,11 @@ public class OrderController {
     @ResponseBody
     public OrderItemDTO pay(String orderId,Double amount) {
         return orderStateMachineEngine.pay(orderId).toDTO(OrderItemDTO.class);
+    }
+
+    @GetMapping("/current")
+    public String user(OAuth2Authentication currentUser) {
+        String userId = ((SecurityUser)currentUser.getPrincipal()).getUserId();
+        return userId;
     }
 }

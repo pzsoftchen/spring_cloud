@@ -1,10 +1,10 @@
-spring:
-  datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://out-zhoujundi.mysql.rds.aliyuncs.com:3307/nothing?useUnicode=true&amp;characterEncoding=UTF-8
-      username: zjd_admin
-      password: judy84711
-      platform: mysql
-  jpa:
-      hibernate:
-        ddl-auto: update
+#spring:
+#  datasource:
+#      driver-class-name: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://out-zhoujundi.mysql.rds.aliyuncs.com:3307/nothing?useUnicode=true&amp;characterEncoding=UTF-8
+#      username: zjd_admin
+#      password: judy84711
+#      platform: mysql
+#  jpa:
+#      hibernate:
+#        ddl-auto: update

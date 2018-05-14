@@ -1,10 +1,7 @@
 package com.fengchaoli.basic.oauth2.token;
 
-import com.fengchaoli.basic.security.SecurityUser;
-import org.springframework.beans.BeanUtils;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.FixedPrincipalExtractor;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor;
-import org.springframework.security.oauth2.common.exceptions.InvalidTokenException;
 
 import java.util.Map;
 

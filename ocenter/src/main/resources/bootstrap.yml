@@ -1,9 +1,9 @@
-#spring:
-#  application:
-#    name: ocenter
-#  cloud:
-#    config:
-#      uri: http://config
-#      fail-fast: true
-#      password: 123456
-#      username: user
+spring:
+  application:
+    name: ocenter
+  cloud:
+    config:
+      uri: http://config
+      fail-fast: true
+      password: 123456
+      username: user

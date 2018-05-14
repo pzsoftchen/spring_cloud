@@ -80,14 +80,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret("acenter")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token","client_credentials")
                 .and()
-                .withClient("ind")   //产业金融
+                .withClient("server")   //产业金融
                 .scopes("sso")
-                .secret("ind")
-                .authorizedGrantTypes("password","client_credentials")
-                .and()
-                .withClient("log")  //物流金融
-                .scopes("sso")
-                .secret("log")
+                .secret("server")
                 .authorizedGrantTypes("password","client_credentials");
     }
 
