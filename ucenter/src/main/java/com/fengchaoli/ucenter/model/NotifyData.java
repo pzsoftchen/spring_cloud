@@ -11,8 +11,10 @@ import javax.validation.constraints.NotNull;
 @Table
 @Data
 public class NotifyData extends BaseEntity {
+
     @NotNull
     private String userId;
+
     @NotNull
     private String account;
 
