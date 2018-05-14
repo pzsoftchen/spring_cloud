@@ -21,10 +21,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 @EnableOAuth2Client
 @EnableOAuth2ClientFeign
-public class OrderApplication extends ResourceServerConfigurerAdapter {
+public class OcenterApplication extends ResourceServerConfigurerAdapter {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OrderApplication.class, args);
+		SpringApplication.run(OcenterApplication.class, args);
 	}
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
