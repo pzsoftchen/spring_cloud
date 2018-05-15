@@ -9,6 +9,8 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Principal;
 //import org.squirrelframework.foundation.fsm.StateMachineBuilderFactory;
 
 
@@ -31,7 +33,7 @@ public class OrderController {
     }
 
     @GetMapping("/current")
-    public Object user(OAuth2Authentication currentUser) {
-        return currentUser.getPrincipal();
+    public Principal getUser(Principal principal){
+        return principal;
     }
 }

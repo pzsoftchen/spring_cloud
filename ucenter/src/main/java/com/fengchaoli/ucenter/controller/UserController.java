@@ -11,6 +11,8 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 
 @RestController
 public class UserController implements UserClient {
@@ -23,9 +25,7 @@ public class UserController implements UserClient {
 
     @Override
     @GetMapping("/current")
-    public UserDTO user(OAuth2Authentication currentUser) {
-        String userId = ((SecurityUser)currentUser.getPrincipal()).getUserId();
-        User user = userService.getOne(userId);
-        return modelMapper.map(user, UserDTO.class);
+    public Principal getUser(Principal principal) {
+        return principal;
     }
 }

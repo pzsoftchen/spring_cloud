@@ -46,7 +46,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints
                 .authenticationManager(authenticationManager)
                 .exceptionTranslator(webResponseExceptionTranslator)
-                .accessTokenConverter(jwtAccessTokenConverter())
+                //.accessTokenConverter(jwtAccessTokenConverter())
                 .reuseRefreshTokens(false)
                 .userDetailsService(userDetailsService)//若无，refresh_token会有UserDetailsService is required错误
                 .tokenStore(tokenStore());
