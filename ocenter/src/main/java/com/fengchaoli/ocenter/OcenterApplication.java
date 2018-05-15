@@ -3,6 +3,8 @@ package com.fengchaoli.ocenter;
 import com.fengchaoli.basic.oauth2.feign.EnableOAuth2ClientFeign;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,11 +12,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
-//import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-
-//@EnableDiscoveryClient
-//@Configuration
+@EnableDiscoveryClient
+@Configuration
 @EnableSpringConfigured
 @EnableLoadTimeWeaving
 @SpringBootApplication
