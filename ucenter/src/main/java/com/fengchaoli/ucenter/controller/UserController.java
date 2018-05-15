@@ -22,7 +22,7 @@ public class UserController implements UserClient {
     protected UserService userService;
 
     @Override
-    @GetMapping("/api/users/current")
+    @GetMapping("/current")
     public UserDTO user(OAuth2Authentication currentUser) {
         String userId = ((SecurityUser)currentUser.getPrincipal()).getUserId();
         User user = userService.getOne(userId);
