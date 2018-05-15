@@ -31,8 +31,7 @@ public class OrderController {
     }
 
     @GetMapping("/current")
-    public String user(OAuth2Authentication currentUser) {
-        String userId = ((SecurityUser)currentUser.getPrincipal()).getUserId();
-        return userId;
+    public Object user(OAuth2Authentication currentUser) {
+        return currentUser.getPrincipal();
     }
 }
